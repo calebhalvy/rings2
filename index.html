@@ -22,6 +22,7 @@
         var width = 900,
 	        height = 600;
 
+	    var mainColorArray = generateColorArray();
 	    var colorArray1 = generateColors(); // circle1
     	var colorArray2 = generateColors(); // circle2
     	var colorArray3 = generateColors(); // circle3
@@ -257,18 +258,30 @@
     	}
 
     	
-    	function generateColors() {
+    	function generateColorArray() {
     		var colorArray = [];
     		var colors = ['red','blue','green','yellow','orange','purple','pink','gray','lime','crimson'];
     		var i=0;
-    		while(i<=24) {
+    		while(i<=25) {
     			colorArray.push(colors[Math.floor((Math.random()*10))]);
     			i++;
     		}
-
-
-    		return colorArray;
+			return colorArray;
     	}
+
+    	function generateColors() {
+    		var colorArray = [];
+    		var i=0;
+    		var j=25;
+    		while(i<=25) {
+    			var index = Math.floor((Math.random()*j));
+    			colorArray.push(mainColorArray[index]);
+    			j--;
+    			i++;
+    		}
+			return colorArray;
+    	}
+
 
     	
 
@@ -276,6 +289,11 @@
     		colorArray1 = generateColors(); // circle1
     		colorArray2 = generateColors(); // circle2
     		colorArray3 = generateColors(); // circle3
+    		colorArray4 = generateColors(); // circle4
+    		colorArray5 = generateColors(); // circle5
+    		colorArray6 = generateColors(); // circle6
+    		colorArray7 = generateColors(); // circle7
+    		colorArray8 = generateColors(); // circle8
     		score = 0;
     		looping = false;
 

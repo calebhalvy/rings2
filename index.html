@@ -271,14 +271,29 @@
 
     	function generateColors() {
     		var colorArray = [];
+    		var copyMainArray = mainColorArray.slice(0);
     		var i=0;
-    		var j=25;
-    		while(i<=25) {
+    		var j=26;
+    		while(i<=26) {
+    			console.log(copyMainArray.length + " " + colorArray.length);
+    			// console.log(i + copyMainArray.toString());
+    			// console.log(i + colorArray.toString());
     			var index = Math.floor((Math.random()*j));
-    			colorArray.push(mainColorArray[index]);
+    			colorArray.push(copyMainArray[index]);
+    			copyMainArray.splice(index, 1);
     			j--;
     			i++;
     		}
+    		console.log("break");
+
+    		// var blueCount = 0;
+    		// for(var i=0; i<colorArray.length; i++) {
+    		// 	if(colorArray[i].localeCompare('blue') === 0) {
+    		// 		blueCount++;	
+    		// 	}
+    		// }
+    		// console.log("Main colors: " + mainColorArray.toString());
+    		// console.log(colorArray.toString() + "    Blues: " + blueCount);
 			return colorArray;
     	}
 

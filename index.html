@@ -22,15 +22,15 @@
         var width = 900,
 	        height = 600;
 
-	    var mainColorArray = generateColorArray();
-	    var colorArray1 = generateColors(); // circle1
-    	var colorArray2 = generateColors(); // circle2
-    	var colorArray3 = generateColors(); // circle3
-    	var colorArray4 = generateColors(); // circle4
-    	var colorArray5 = generateColors(); // circle5
-    	var colorArray6 = generateColors(); // circle6
-    	var colorArray7 = generateColors(); // circle7
-    	var colorArray8 = generateColors(); // circle8
+	    var mainColorArray = generateMainArray();
+	    var colorArray1 = generateRingArray(); // circle1
+    	var colorArray2 = generateRingArray(); // circle2
+    	var colorArray3 = generateRingArray(); // circle3
+    	var colorArray4 = generateRingArray(); // circle4
+    	var colorArray5 = generateRingArray(); // circle5
+    	var colorArray6 = generateRingArray(); // circle6
+    	var colorArray7 = generateRingArray(); // circle7
+    	var colorArray8 = generateRingArray(); // circle8
     	var score = 0;
 
     	var DRAW_START = 0.0*Math.PI;
@@ -208,7 +208,8 @@
 
 		function checkMatch() {
             for(var i=0; i<colorArray1.length; i++) {
-    			if(colorArray1[i].localeCompare(colorArray2[i]) === 0 && colorArray1[i].localeCompare(colorArray3[i]) === 0) {
+    			if(colorArray1[i].localeCompare(colorArray2[i]) === 0 && 
+    				colorArray1[i].localeCompare(colorArray3[i]) === 0) {
     				document.getElementById("winScreen").style.visibility="visible";
 
     				window.cancelAnimationFrame(gameLoop);
@@ -257,8 +258,8 @@
 			}
     	}
 
-    	
-    	function generateColorArray() {
+    	// generates the main color array
+    	function generateMainArray() {
     		var colorArray = [];
     		var colors = ['red','blue','green','yellow','orange','purple','pink','gray','lime','crimson'];
     		var i=0;
@@ -269,46 +270,33 @@
 			return colorArray;
     	}
 
-    	function generateColors() {
+    	// generates random arrays of colors from the main color array, removing one element each iteration so that
+    	// all color arrays have the same amount of each color.
+    	function generateRingArray() {
     		var colorArray = [];
-    		var copyMainArray = mainColorArray.slice(0);
+    		var copyMainArray = mainColorArray.slice(0); // copies the values of the main array to a new variable
     		var i=0;
     		var j=26;
     		while(i<=26) {
-    			console.log(copyMainArray.length + " " + colorArray.length);
-    			// console.log(i + copyMainArray.toString());
-    			// console.log(i + colorArray.toString());
-    			var index = Math.floor((Math.random()*j));
-    			colorArray.push(copyMainArray[index]);
-    			copyMainArray.splice(index, 1);
+    			var index = Math.floor((Math.random()*j)); // random index
+    			colorArray.push(copyMainArray[index]); // push one color from the main array
+    			copyMainArray.splice(index, 1); // delete that color element
     			j--;
     			i++;
     		}
-    		console.log("break");
-
-    		// var blueCount = 0;
-    		// for(var i=0; i<colorArray.length; i++) {
-    		// 	if(colorArray[i].localeCompare('blue') === 0) {
-    		// 		blueCount++;	
-    		// 	}
-    		// }
-    		// console.log("Main colors: " + mainColorArray.toString());
-    		// console.log(colorArray.toString() + "    Blues: " + blueCount);
 			return colorArray;
     	}
 
 
-    	
-
     	function restartGame() {
-    		colorArray1 = generateColors(); // circle1
-    		colorArray2 = generateColors(); // circle2
-    		colorArray3 = generateColors(); // circle3
-    		colorArray4 = generateColors(); // circle4
-    		colorArray5 = generateColors(); // circle5
-    		colorArray6 = generateColors(); // circle6
-    		colorArray7 = generateColors(); // circle7
-    		colorArray8 = generateColors(); // circle8
+    		colorArray1 = generateRingArray(); // circle1
+    		colorArray2 = generateRingArray(); // circle2
+    		colorArray3 = generateRingArray(); // circle3
+    		colorArray4 = generateRingArray(); // circle4
+    		colorArray5 = generateRingArray(); // circle5
+    		colorArray6 = generateRingArray(); // circle6
+    		colorArray7 = generateRingArray(); // circle7
+    		colorArray8 = generateRingArray(); // circle8
     		score = 0;
     		looping = false;
 
